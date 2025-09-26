@@ -195,3 +195,5 @@ void showAvatar(InputStream imageStream) {
     //makes the Jframe visible on the screen
     frame.setVisible(true);
 }
+
+//VIctor Gian Lacuata
