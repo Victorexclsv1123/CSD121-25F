@@ -1,3 +1,4 @@
+/*
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -8,53 +9,56 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-void main() {
-    try {
-        var avatarStream = getRandomAvatarStream();
-        showAvatar(avatarStream);
-    } catch (IOException | InterruptedException e) {
-        e.printStackTrace();
+public class AvatarViewer {
+
+    public static void main(String[] args) {
+        try {
+            InputStream avatarStream = getRandomAvatarStream();
+            showAvatar(avatarStream);
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
-}
+    private static InputStream getRandomAvatarStream() throws IOException, InterruptedException {
+        // Pick a random style
+        String[] styles = {
+                "adventurer", "adventurer-neutral", "avataaars", "big-ears", "big-ears-neutral",
+                "big-smile", "bottts", "croodles", "croodles-neutral", "fun-emoji", "icons",
+                "identicon", "initials", "lorelei", "micah", "miniavs", "open-peeps",
+                "personas", "pixel-art", "pixel-art-neutral"
+        };
+        String style = styles[(int) (Math.random() * styles.length)];
 
-InputStream getRandomAvatarStream() throws IOException, InterruptedException {
-    // Pick a random style
-    String[] styles = { "adventurer", "adventurer-neutral", "avataaars", "big-ears", "big-ears-neutral", "big-smile", "bottts", "croodles", "croodles-neutral", "fun-emoji", "icons", "identicon", "initials", "lorelei", "micah", "miniavs", "open-peeps", "personas", "pixel-art", "pixel-art-neutral" };
-    var style = styles[(int)(Math.random() * styles.length)];
+        // Generate a random seed
+        int seed = (int) (Math.random() * 10000);
 
-    // Generate a random seed
-    var seed = (int)(Math.random() * 10000);
+        // Build the API URL
+        URI uri = URI.create(String.format("https://api.dicebear.com/9.x/%s/png?seed=%d", style, seed));
 
-    // Create an HTTP request for a random avatar
-    var uri = URI.create("https://api.dicebear.com/9.x/%s/png?seed=%d".formatted(style, seed));
-    var request = HttpRequest.newBuilder(uri).build();
+        // Send HTTP request
+        HttpRequest request = HttpRequest.newBuilder(uri).build();
+        HttpClient client = HttpClient.newHttpClient();
+        HttpResponse<InputStream> response = client.send(request, HttpResponse.BodyHandlers.ofInputStream());
 
-    // Send the request
-    try (var client = HttpClient.newHttpClient()) {
-        var response = client.send(request, HttpResponse.BodyHandlers.ofInputStream());
         return response.body();
     }
-}
 
-void showAvatar(InputStream imageStream) {
-    JFrame frame = new JFrame("PNG Viewer");
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setResizable(false);
-    frame.setSize(200, 200);
-    frame.getContentPane().setBackground(Color.BLACK);
+    private static void showAvatar(InputStream imageStream) {
+        JFrame frame = new JFrame("Random Avatar");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(200, 200);
+        frame.getContentPane().setBackground(Color.BLACK);
 
-    try {
-        // Load the PNG image
-        Image image = ImageIO.read(imageStream);
+        try {
+            Image image = ImageIO.read(imageStream);
+            JLabel imageLabel = new JLabel(new ImageIcon(image));
+            frame.add(imageLabel, BorderLayout.CENTER);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        // Create a JLabel to display the image
-        JLabel imageLabel = new JLabel(new ImageIcon(image));
-        frame.add(imageLabel, BorderLayout.CENTER);
-
-    } catch (IOException e) {
-        e.printStackTrace();
+        frame.setVisible(true);
     }
-
-    frame.setVisible(true);
 }
+*/
