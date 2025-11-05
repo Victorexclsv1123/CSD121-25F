@@ -98,6 +98,18 @@ public class Board {
             return board[0][2];
         }
         return null;
+
+
+    }
+
+    /**
+     * Checks if the given player has a winning combination.
+     * @param p the player symbol ('X' or 'O')
+     * @return true if that player has won; false otherwise
+     */
+    public boolean hasWinner(char p) {
+        PlayerToken token = (p == 'X') ? PlayerToken.X : PlayerToken.O;
+        return token.equals(getWinner());
     }
 
     /**
