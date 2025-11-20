@@ -1,4 +1,4 @@
-package lab4;
+/*package lab4;
 
 import lab4.game.TicTacToeGame;
 import lab4.ui.Console;
@@ -42,3 +42,5 @@ public class Main {
         }
     }
 }
+
+ */

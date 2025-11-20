@@ -1,4 +1,4 @@
-import javax.imageio.ImageIO;
+/* import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
@@ -58,3 +58,6 @@ void showAvatar(InputStream imageStream) {
 
     frame.setVisible(true);
 }
+
+
+ */
