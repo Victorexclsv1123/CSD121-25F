@@ -1,8 +1,8 @@
-package tictactoe.ui;
+package lab5.ui;
 
 import com.diogonunes.jcolor.AnsiFormat;
-import tictactoe.game.*;
-import tictactoe.players.*;
+import lab5.game.*;
+import lab5.players.*;
 
 import java.util.Scanner;
 
@@ -53,12 +53,14 @@ public class Console {
                 input = input.substring(1).toLowerCase(); // remove the '@' prefix
 
                 switch ( input ) {
-                    // E.g.
-                    // case "randy" -> { return new Randy(); }
-                    default -> printAlert("TODO: Implement computer players");
+                    case "randy":
+                        // simple computer player
+                        return new RandomPlayer("Randy (" + whichPlayer + ")");
+                    default:
+                        printAlert("Unknown computer player. Please try again.");
                 }
             } else {
-                return new Player(input);
+                return new RandomPlayer(input);
             }
         }
     }
