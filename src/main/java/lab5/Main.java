@@ -1,4 +1,4 @@
-package lab5;
+/*package lab5;
 
 import lab5.game.TicTacToeGame;
 import lab5.ui.Console;
@@ -46,3 +46,5 @@ public class Main {
         }
     }
 }
+
+ */

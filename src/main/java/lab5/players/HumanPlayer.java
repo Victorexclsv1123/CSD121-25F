@@ -1,4 +1,4 @@
-package lab5.players;
+/*package lab5.players;
 
 import lab5.game.Board;
 import lab5.game.Position;
@@ -24,3 +24,4 @@ public class HumanPlayer extends Player {
         }
     }
 }
+*/
